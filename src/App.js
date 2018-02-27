@@ -28,6 +28,9 @@ class App extends Component {
     if(concert.eventDateName.toLowerCase().includes(this.state.filter)){
       return true;
     }
+    if(concert.eventHallName.toLowerCase().includes(this.state.filter)){
+      return true;
+    }
     return false;
   }
 
@@ -39,15 +42,17 @@ class App extends Component {
 
       return (
         <div>
+          <h1>Concerts in Iceland</h1>
+          Search:
           <input type="text" onChange={this.filter}/>
             {concerts.map((aConcert, i)=> 
-            <div key={i}>
-            <img src={aConcert.imageSource}></img>
-            <div>{aConcert.dateOfShow}</div>
-            <div>{aConcert.name}</div>
+            <div className="anEvent"key={i}>
+            <img alt="event" src={aConcert.imageSource}></img>
+            <div>Date and Time: {aConcert.dateOfShow}</div>
             <div>{aConcert.eventDateName}</div>
-            <div>{aConcert.eventHallName}</div>
-            </div>)} 
+            <div>Venue: {aConcert.eventHallName}</div>
+            <div>Notes: {aConcert.name}</div>
+            </div>)}
         </div>
       )
   }

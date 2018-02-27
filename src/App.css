@@ -20,5 +20,16 @@
 
 body{
   text-align: center;
+  background-color: #B2B6CC;
 }
 
+.anEvent{
+  padding: 30px;
+}
+
+
+
+h1{
+  font-family: fantasy;
+  font-size: 50px;
+}
