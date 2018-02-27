@@ -14,20 +14,32 @@ class App extends Component {
    .then( ({results: concerts}) => this.setState({concerts}))
   }
   
-  filter(event){
-    this.setState({filter: event.target.value})
+  filter = (event) => {
+    this.setState({filter: event.target.value.toLowerCase()})
+  }
+
+  stuffToFilter = (concert) =>{
+    if(concert.eventDateName.toLowerCase().includes(this.state.filter)){
+      return true;
+    }
+    if(concert.name.toLowerCase().includes(this.state.filter)){
+      return true;
+    }
+    if(concert.eventDateName.toLowerCase().includes(this.state.filter)){
+      return true;
+    }
+    return false;
   }
 
   render(){
       let concerts = this.state.concerts;
       if(this.state.filter){
-        concerts = concerts.filter(concert => concert.eventDateName.toLowerCase()
-        .includes(this.state.filter.toLowerCase()))
+        concerts = concerts.filter(concert => this.stuffToFilter(concert))
       }
 
       return (
         <div>
-          <input type="text" onChange={this.filter.bind(this)}/>
+          <input type="text" onChange={this.filter}/>
             {concerts.map((aConcert, i)=> 
             <div key={i}>
             <img src={aConcert.imageSource}></img>
